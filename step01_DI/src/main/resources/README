@@ -1,0 +1,9 @@
+1. 흐름순서
+	- ClassPathXmlApplicationContext("*.xml");으로 bean 호출
+	- bean을 통해 DTO를 통해 객체를 생성 (Scope 종류 [default: 싱글톤 / prototype, Session, request])
+		- 컨테이너를 통해 알아서 생성됨
+	- bean id를 통해 생성된 객체를 호출
+
+2. Annotation 
+	- @Autowired : 의존성을 주입 / 주입대상이 두개 이상일 경우 어느 객체를 주입해야할 지 선택할 수 없기에 에러가 발생
+	- @Qualifier("name") : Autowired에서 사용할 의존 객체를 지정 기본값이 없을 경우 

@@ -1,0 +1,44 @@
+[학습]
+1. Container
+	- 인스턴스의 생명주기를 관리, 추가적인 기능 제공
+	ex) WAS의 Servlet 컨테이너
+	
+2.	IoC (Inversion of Control)
+		- 제어의 역전
+		- 개발자가 아닌 컨테이너가 객체의 제어를 담당
+
+3. DI (Dependency Injection) 
+	- 의존성 주입
+	- 서로 의존관계의 객체를 컨테이너가 연결
+		- Spring IoC 컨테이너 = ApplicationContext (BeanFactory Interface 상속)
+		- Spring IoC 컨테이너가 관리하는 객체 = Bean 빈(Default : SingletonScope)
+
+		- Constructor Injection(생성자 주입) (*추천)
+			- 객체 주입이 필수적인 경우
+			- 생성자 주입이 무조건 보장(객체를 사용하기 위해서는 반드시 생성자를 한 번 호출해야 하기 때문에) 
+			- @Autowired(require = false) : 객체주입이 반드시 보장되지 않으면서도 객체 의존성 주입이 가능
+			
+			
+		- Setter Injection(수정자 주입)
+			- setXXX(의존하는 객체) : 의존하는 객체, 즉 주입받는 객체가 변경될 가능성 o
+			- setAnimal(interface Animal)
+		- Field Injection(필드 주입)
+			- 코드는 간결하게 사용 가능, 외부에서 접근이 불가능
+			- 거의 사용하지 않음.
+			
+4. Annotation
+	- @Configuration : 스프링 설정 클래스를 선언하는 어노테이션
+	- @Bean : bean을 정의하는 어노테이션
+	- @ComponentScan : @Controller, @Service, @Repository, @Component 어노테이션이 붙은 클래스를 찾아 컨테이너에 등록
+	- @Component : 컴포넌트 스캔의 대상이 되는 애노테이션 중 하나로써 주로 유틸, 기타 지원 클래스에 붙이는 어노테이션
+	- @Autowired : 주입 대상이되는 bean을 컨테이너에 찾아 주입하는 어노테이션
+
+
+- 정리
+	-scope: 객체의생성 방식을 설정
+		- prototype : 빈 요청시마다 새로운 객체 생성
+		- singleton(default) : 하나의 객체를 공유
+		- request : 요청마다 새로운 객체로 생성
+		- session : 세션마다 새로운 객체로 생성
+		
+

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!--  -->
+	<bean id="p1" class="step01.model.domain.People">
+	<!-- <constructor-arg name="name" value="test"></constructor-arg>
+	<constructor-arg name="age" value="15"></constructor-arg>
+	<constructor-arg name="myCar" ref="c1"></constructor-arg> -->
+	<property name="name" value="test_P1"></property>
+	<property name="age" value="15"></property>
+	<property name="myCar" ref="c1"></property>
+	</bean>
+	
+	<bean id="c1" class="step01.model.domain.Car" scope="prototype">
+	<constructor-arg name="carNo" value="51"/>
+	<constructor-arg name="carName" value="martiz"/>
+	</bean>
+	
+	<!-- 수정자 주입
+	property = 수정자 setter를 사용 
+	 -->
+	<bean id="p2" class="step01.model.domain.People">
+	<property name="name" value="test_P2"></property>
+	<property name="age" value="24"></property>
+	<property name="myCar" ref="c1"></property>	
+	</bean>
+</beans>
+	

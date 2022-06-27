@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	<context:annotation-config/>
+	<bean id="c1" class="step02.model.domain.Car">
+	<property name="carNo" value="51"></property>
+	</bean>
+	
+	<bean id="p1" class="step02.model.domain.People">
+	<!-- <property name="myCar" ref="c1"/> -->
+	</bean>
+	
+	<bean id="c2" class="step02.model.domain.Car">
+	<property name="carNo" value="52"></property>
+	</bean>
+</beans>
