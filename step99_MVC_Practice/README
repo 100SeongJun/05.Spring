@@ -1,0 +1,48 @@
+[Maven]
+	root-context)
+		- spring-jdbc
+		- spring-tx
+		- mybatis-spring
+			- mybatis
+	
+	DB)
+		Conntection Pool
+			- hikari-cp
+			- HikariCP
+			
+	etc)
+		- lombok 1.18
+		- jstl 1.2
+		 
+	default) 
+		- javax.servlet-api 4.0.1
+		- javax.inject 1
+		- javax.servlet.jsp-api 2.3.3
+
+- Server.xml
+	- 서버를 구동할 프로젝트를 설정한다. path를 통해 루트 url 값을 정의할 수 있다. 
+
+- web.xml 
+	- WebApplication 설정 파일
+		- DispatcherServlet
+		- ContextLoaderListener
+		- Filter
+	개념: 클라이언트의 요청을 받아 컨트롤러에서 처리해주기 위해 정의되는 XML파일
+		 Servlet과 jsp 사이에서 값을 주고 받는 매개체 역할을 함
+	@Controller 어노테이션을 이용해 Handler Adapter가 자동으로 값을 처리한다.
+
+- pom.xml
+	- 프로젝트 내 빌드 옵션을 설정하는 부분으로 환경 설정을 담당한다.
+	- Maven에서 필요한 jar파일을 dependency를 통해 사용할 수 있다.
+	(Maven:자바 프로젝트를 관리하는 툴로 라이브러리를 다운하거나 프로젝트를 빌드해준다. 자바 소스를
+	컴파일하고 패키지해서 deploy까지 자동화 해준다.)
+
+- root-context.xml
+	- 데이터의 조회 및 처리, DB관련 Bean을 설정해주는 공간
+	- view와 관련되지 않은 객체를 정의 DAO,Service,DB등 비즈니스 로직과 관련된 설정
+
+- servlet-context.xml
+	- 요청과 관련된 객체 정의
+	- url과 관련된 controller
+	- 어노테이션 등을 설정해준다.
+		 

@@ -1,0 +1,11 @@
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+ <!-- 생성자 주입 StudentMapper -->
+<mapper namespace="com.spring.mapper.StudentMapper">
+	<select id="getAllStudent" resultType="com.spring.dto.Student">
+	SELECT * FROM Student where NUMBER=3
+	</select>
+</mapper>
