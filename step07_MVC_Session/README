@@ -1,0 +1,15 @@
+1. Cookie
+	- Client에 저장
+	- 시간 설정(삭제를 위해서는 시간 0)
+	
+2. Session
+	- 서버의 메모리 저장
+	- HttpSession (삭제를 위해서는 invalidate)
+
+3. 실습
+	- index.jsp[Cookie 생성] -> controller[Cookie 획득 및 확인]
+	-> cookieView.jsp[Cookie 획득 및 확인]
+	
+	- index.jsp[Session 생성] -> controller[Session획득 및 확인, 새로운 데이터 추가]
+	-> sessionView1.jsp[세션 획득 및 확인, 데이터 활용, 세션 데이터 삭제 요청]
+	-> controller 세션 삭제 -> sessionview2.jsp에서 확인
