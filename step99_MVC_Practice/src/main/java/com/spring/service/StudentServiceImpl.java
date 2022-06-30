@@ -13,7 +13,9 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public Student getAll() {
-		return student.getAllStudent();
+		System.out.println(student.getAllStudent());
+		return null;
+//		return student.getAllStudent();
 	}
 
 }
