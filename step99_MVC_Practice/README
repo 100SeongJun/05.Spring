@@ -1,3 +1,4 @@
+1. MYBATIS
 [Maven]
 	root-context)
 		- spring-jdbc
@@ -55,7 +56,7 @@
 (ex. dept_no ==> deptNo)
 
 
-[restAPI]
+2. [restAPI]
 REST Representational State Transfer
 	- 웹에서 데이터를 전송하고 처리하는 방법을 정의한 인터페이스
 	- HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시
@@ -91,4 +92,25 @@ REST Representational State Transfer
 		... 
 	- HATEOS Hypermedia As The Of Engine Application State
 		- REST API에 대한 결과 정보
+
+3. 자원 공유
+	- 동일 출처 정책 SOP Same-Origin Policy
+		- 불러온 문서나 스크립트가 다른 출처에서 가져온 리소스와 상호작용하는 것을 제한하는 중요한 보안 방식
+			- Origin 구성
+				- URL Schema 
+				- Hostname 
+				- Port 
+				------------- 같으면 동일 출처 (경로만 다를뿐 포트까지 같으면 동일한 출처)
+	- 동일 출처 구분
+		http://oringin.spring.com/dev/back.html	
+		http://oringin.spring.com/server/server.html
+		https://dev.spring.com/server/server.html 다른 출처 (호스트가 다름)
+		https://oringin.spring.com/secure/server.html 다른 출처 (프로토콜이 다름)
+		https://oringin.spring.com:81/ 다른 출처 (포트넘버가 다름)
+		
 	
+	- 교차 출처 자원 공유 CORS, Cross Origin Resource Sharing
+		- 실행 중인 웹 애플리케이션이 다른 출처의 선택한 자원에 접근할 수 있는 권한을 부여하도록 브라우저에 알려주는 체제
+		- 동일 출처 정책에 대한 불편함을 해결하기 위해 등장한 정책
+		- 웹 브라우저에서 외부 도메인 서버와 통신하기 위한 방식을 표준화한 스펙
+		- 다른 출처의 리소스를 불러오려면 그 출처에서 올바른 CORS 헤더를 포함한 응답을 반환

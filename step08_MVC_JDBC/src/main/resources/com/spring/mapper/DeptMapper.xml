@@ -10,6 +10,8 @@
 	<select id="getDeptNameByDeptno" resultType="string">
 		SELECT dname FROM
 		DEPT WHERE deptno=#{deptno}
+		
+		SELECT DNAME FROM DEPT WHERE DEPTNO <![CDATA[>]]>10
 	</select>
 
 	<select id="getDeptMap" resultMap="getDeptResultMap">
@@ -32,7 +34,6 @@
 		<result column="dname" property="dname" />
 		<result column="loc" property="loc" />
 	</resultMap>
-
 
 	<select id="getAllDeptsMap" resultMap="getAllDeptsMapResultMap">
 		SELECT deptno,dname,loc
