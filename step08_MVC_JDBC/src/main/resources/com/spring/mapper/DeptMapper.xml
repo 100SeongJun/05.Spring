@@ -1,49 +1,31 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.spring.mapper.DeptMapper">
-	<select id="getDeptByDeptno" resultType="com.spring.dto.Dept">
-		SELECT deptno, dname,
-		loc FROM DEPT WHERE deptno= #{deptno}
-	</select>
-
-	<select id="getDeptNameByDeptno" resultType="string">
-		SELECT dname FROM
-		DEPT WHERE deptno=#{deptno}
-		
-		SELECT DNAME FROM DEPT WHERE DEPTNO <![CDATA[>]]>10
-	</select>
-
-	<select id="getDeptMap" resultMap="getDeptResultMap">
+	<select id="getAllDepts" resultType="com.spring.dto.Dept">
 		SELECT deptno, dname, loc
-		FROM
-		DEPT WHERE deptno= #{deptno}
+		FROM dept
 	</select>
-	<resultMap type="hashmap" id="getDeptResultMap">
-		<result column="deptno" property="deptno2" />
-		<result column="dname" property="dname2" />
-		<result column="loc" property="loc2" />
-	</resultMap>
-	<!-- type이 dto일 경우 property는 dto의 변수와 맞춰줘야한다. -->
-	<select id="getAllDept" resultMap="getAllDeptResultMap">
-		SELECT * FROM DEPT
-	</select>
-	<resultMap type="com.spring.dto.Dept"
-		id="getAllDeptResultMap">
-		<result column="deptno" property="deptno" />
-		<result column="dname" property="dname" />
-		<result column="loc" property="loc" />
-	</resultMap>
 
-	<select id="getAllDeptsMap" resultMap="getAllDeptsMapResultMap">
-		SELECT deptno,dname,loc
-		FROM DEPT
+	<select id="getDept" parameterType="map"
+		resultType="com.spring.dto.Dept">
+		SELECT deptno,dname,loc FROM dept WHERE deptno = #{deptno} and
+		dname=#{dname}
+		<!-- SELECT dname FROM dept WHERE deptno <![CDATA[>]]> 10 -->
+		<!-- SELECT dname FROM dept WHERE deptno &gt; > &lt; > &amp; & 10 -->
 	</select>
-	<resultMap type="hashmap" id="getAllDeptsMapResultMap">
-		<result column="deptno" property="deptno" />
-		<result column="dname" property="dname" />
-		<result column="loc" property="loc" />
-	</resultMap>
+
+	<delete id="deleteDept" parameterType="_int">
+		DELETE FROM dept WHERE
+		deptno = #{deptno}
+	</delete>
+
+
+	<update id="updateDept" parameterType="com.spring.dto.Dept">
+		UPDATE dept SET loc =
+		#{loc}, dname=#{dname} WHERE deptno = #{deptno}
+	</update>
 
 	<insert id="insertDept" parameterType="com.spring.dto.Dept">
 		INSERT INTO dept VALUES
@@ -52,22 +34,41 @@
 		</trim>
 	</insert>
 
-	<delete id="deleteDept" parameterType="String">
-		DELETE FROM DEPT where
-		loc=#{loc}
-	</delete>
-	<update id="updateDept" parameterType="map">
-		UPDATE DEPT SET loc=#{loc} WHERE deptno=#{deptno}
-		<if test="dname !=null and dname !=''">
-			and dname=#{dname}
-		</if>
-	</update>
+	<!-- <select id="getDeptByDeptno" resultType="com.spring.dto.Dept"> SELECT 
+		deptno, dname, loc FROM dept WHERE deptno = #{deptno} </select> -->
+
+	<!-- <select id="getDeptByDeptno" resultMap="getDeptByDeptnoResultMap"> 
+		SELECT deptno, dname, loc FROM dept WHERE deptno = #{deptno} </select> <resultMap 
+		type="com.spring.dto.Dept" id="getDeptByDeptnoResultMap"> <result column="deptno" 
+		property="deptno"/> <result column="dname" property="dname"/> <result column="loc" 
+		property="loc"/> </resultMap> -->
 
 
-	<insert id="insertDepts" parameterType="com.spring.dto.Dept">
-			INSERT INTO DEPT VALUES (deptno, dname, loc)
-		<foreach collection="list" open="(" close=")" item="deptList">
-			#{deptList.deptno},#{deptList.dname},#{deptList.loc}
-		</foreach>
-	</insert>
+	<!-- <select id="getDeptMap" resultType="java.util.HashMap"> SELECT deptno, 
+		dname, loc FROM dept WHERE deptno = #{deptno} </select> -->
+
+	<!-- <select id="getDeptMap" resultMap="getDeptByDeptnoResultMap2"> SELECT 
+		deptno, dname, loc FROM DEPT WHERE deptno = #{deptno} </select> <resultMap 
+		type="java.util.HashMap" id="getDeptByDeptnoResultMap2"> <result column="deptno" 
+		property="deptno2"/> <result column="dname" property="dname2"/> <result column="loc" 
+		property="loc2"/> </resultMap> -->
+
+
+
+	<!-- <select id="getAllDeptsMap" resultType="map"> SELECT deptno, dname, 
+		loc FROM dept <if test="deptno != null"> WHERE deptno = #{deptno} </if> </select> -->
+	<!-- INSERT INTO dept VALUES(#{deptno},#{dname},#{loc}) -->
+
+
+	<!-- <insert id="" parameterType="" > SELECT dept WHERE deptno IN <foreach 
+		collection="" item="deptno" open="(" close=")" separator=","> #{deptno} </foreach> 
+		</insert> -->
+
+	<!-- 동적쿼리 -->
+	<!-- <update id="updateDeptByDeptnoAndDname" parameterType="map"> UPDATE 
+		dept SET loc = #{loc} WHERE <if test="dname != null and dname != ''"> deptno 
+		= #{deptno} AND </if> <choose> <when test=""></when> <when test=""></when> 
+		</choose> dname = #{dname} </update> -->
+
+
 </mapper>
