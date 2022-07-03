@@ -1,0 +1,31 @@
+header {
+  width: 100vw;
+  height: auto;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-image: url("/public/header-midnightBlue.jpg");
+}
+
+.home {
+  margin-top: 20px;
+}
+header .home {
+  /* margin-left: 10px; */
+  text-align: center;
+}
+.home img {
+  background-image: url("/public/home.png");
+  border-radius: 100px;
+  height: 10vh;
+}
+
+.homeContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(188, 250, 216, 0.897);
+}
