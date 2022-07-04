@@ -12,6 +12,7 @@
       <button id="btn" onclick="alldept()">모든 데이터 출력</button>
       <div id="result"></div>
       <input placeholder="id를 입력하세요."></input>
+      
       <script>
         function alldept() {
         document.getElementById('result').innerHTML = ""

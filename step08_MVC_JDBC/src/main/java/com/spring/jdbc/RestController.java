@@ -102,6 +102,7 @@ public class RestController {
 	// 생성
 	@PostMapping(value = "/api/dept")
 	public void insertDept(Dept dept) {
+		System.out.println(dept);
 		deptService.insertDept(dept);
 		return;
 	}
