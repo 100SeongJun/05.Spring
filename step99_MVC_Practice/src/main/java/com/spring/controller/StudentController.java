@@ -1,10 +1,9 @@
 package com.spring.controller;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.spring.service.StudentServiceImpl;
 
@@ -14,9 +13,9 @@ public class StudentController {
 	@Autowired
 	private StudentServiceImpl studentService;
 
-	@RequestMapping("/home")
-	public String Student(HttpSession session) {
-		System.out.println(studentService.getAll());
+	@GetMapping(value = "/")
+	public String Student(Model model) {
+		model.addAttribute("student", studentService.getAll());
 		return "home";
 	}
 }

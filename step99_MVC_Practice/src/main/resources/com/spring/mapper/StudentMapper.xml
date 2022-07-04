@@ -6,9 +6,9 @@
  <!-- 생성자 주입 StudentMapper -->
 <mapper namespace="com.spring.mapper.StudentMapper">
 	<select id="getAllStudent" resultType="com.spring.dto.Student">
-	SELECT * FROM Student where NUMBER=3 or NUMBER=4
+	SELECT * FROM Student
 	</select>
-	<select id=""></select>
+	<!-- <select id=""></select> -->
 	
 	
 </mapper>
