@@ -1,0 +1,67 @@
+step10_JAP_Basic
+
+[학습]
+1. persistence 영속성
+	- 프로그램이 종료되어도 사라지지 않는 데이터의 특성
+	- JDBC를 통한 개발
+	
+	- Persistence Frame
+		- JDBC 프로그래밍의 복잡함, 번거로움 없이 간단한 작업만으로 DB와 연동되는 시스템
+		- 종류 : SQL Mapper, ORM
+		
+			- SQL Mapper
+				- SQL <---> Object 필드
+				- SQL 문장으로 DB 다루기
+					- ex) Mybatis, JDBCTemplate, etc
+			
+			- ORM Object-Relational Mapping
+				- DB <---> Object
+				- 객체를 통한 DB 다루기
+				- 객체와 RDBMS 데이터를 자동으로 매핑
+				- Persistence API
+					- ex) JPA, etc
+					
+					- JPA Java Persistence API
+						- Java ORM 기술에 대한 API 표준 명세
+						- 구성요소
+							- javax.persistence API
+							- JPQL Java Persistence Query Language
+							- 객체/관계 메타데이터
+						- 구현체 : Hibernate, OpenJPA
+					
+					- Hibernate
+						- JPA 구현체 중 하나
+						- SQL을 직접 사용하지 않음 (개발자의 입장)
+						- 내부적으로 JDBC API 동작
+						- Java Class, Property 명 제외 대소문자 구분
+						
+						- 장점
+							- 객체 지향적인 코드를 작성 및 집중하여 개발할 수 있도록 도움을 줌
+							- 코드 단순화
+							- 재사용 및 유지보수에 특화
+							- DBMS 변경이 용이 (DBMS 종속성이 줄어듦)
+						- 단점
+							- 생각지못한 쿼리가 실행될 수 있다. - 원하지 않는 결과 및 성능 저하
+							- 성능 향상을 위한 쿼리 튜닝이 필요할 경우가 있음 - 프로젝트의 복잡성 증가하게 되면 난이도 상승
+					
+					- 영속성 컨텍스트 Persistence Context
+						- 엔티티를 영구 저장하고 관리하는 고유한 환경
+						- persist()
+						- 엔티티의 상태에 따라 영속성 컨텍스트 포함 여부가 결정
+						- https://dev-mind.fr/img/training/spring-intro/lifecycle-e9f1372424.png
+							- 비영속(new/transient) : 영속성 컨텍스트와 관계가 없는 상태
+							- 영속(managed) : 영속성 컨텍스트에 저장된 상태 (pertist() 메소드 사용)
+								- 장점
+									- 1차 캐시, 동일성 보장
+									- 트랜잭션을 지원하는 쓰기 지연
+									- 변경 감지
+									
+							- 준영속(Detached) : 영속성 컨텍스트에서 저장되었다가 분리된 상태
+							- 삭제(Removed) : 삭제가 된 상태
+
+
+-개인정리
+  영속성 컨텍스트 내에서 데이터틑 감지하고 최종적으로 트랜잭션에서 commit을 통해 결과를 반영함
+ 
+	
+						
