@@ -1,4 +1,4 @@
-//package entity4;
+//package entity5;
 //
 //import java.util.ArrayList;
 //import java.util.List;
@@ -8,23 +8,23 @@
 //import javax.persistence.GeneratedValue;
 //import javax.persistence.GenerationType;
 //import javax.persistence.Id;
-//import javax.persistence.OneToMany;
+//import javax.persistence.ManyToMany;
 //
 //import lombok.Data;
+//import lombok.ToString;
 //
 //@Data
 //@Entity
-//public class Team {
+//@ToString(exclude = {"members"})
+//public class Product {
+//
 //	@Id
 //	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@Column(name = "product_id")
 //	private Long id;
-//	@Column(length = 20)
+//
 //	private String name;
-//
-//	@OneToMany(mappedBy = "team")
+//	
+//	@ManyToMany(mappedBy = "products")
 //	private List<Member> members = new ArrayList<Member>();
-//
-//	public String toString() {
-//		return "Team";
-//	}
 //}

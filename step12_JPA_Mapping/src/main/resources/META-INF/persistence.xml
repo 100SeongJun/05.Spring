@@ -31,7 +31,7 @@
 			<!-- <property name="hibernate.hbm2ddl.auto" value="create"/> -->
 			
 			<!-- 실제 개발시에는 none으로 설정해두고 해야함. -->
-			<property name="hibernate.hbm2ddl.auto" value="none"/>
+			<property name="hibernate.hbm2ddl.auto" value="create"/>
 			
 		</properties>
 	</persistence-unit>

@@ -1,0 +1,5 @@
+test1 
+test2
+test3 : 
+test4 : 1대다 관계 외래키
+test5 : 다대다관계 양방향
