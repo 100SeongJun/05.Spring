@@ -1,0 +1,21 @@
+td {
+  margin: 0px;
+  padding: 0px;
+  border: 1px black solid;
+  text-align: right;
+}
+
+th {
+  margin: 0px;
+  padding: 0px;
+  border: 1px;
+}
+tr {
+  margin: 0px;
+  padding: 0px;
+}
+table {
+  margin: 0px;
+  padding: 0px;
+  /* border: 1px black solid; */
+}
