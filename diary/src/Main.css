@@ -1,0 +1,19 @@
+header {
+  width: 100vw;
+  height: auto;
+}
+Outlet {
+}
+footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+.container {
+  height: 100vh;
+  width: auto;
+}
+
+span {
+  margin-left: 15px;
+}
