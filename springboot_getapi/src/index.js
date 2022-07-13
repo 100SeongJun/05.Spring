@@ -3,12 +3,9 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, Route, Router, Routes } from "react-router-dom";
-import { Main } from "./page/Main";
-import { Select } from "./page/Select";
-import { Emp } from "./page/Emp";
-import { Depts } from "./component/Depts";
 import { Emps } from "./component/Emps";
-import { Dept } from "./page/Dept";
+import { SubDept } from "./component/dept/index";
+import { Select, Main, Emp, Dept } from "./page/index";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -18,7 +15,7 @@ root.render(
         <Route index element={<Select />} />
 
         <Route path="/dept" element={<Dept />} />
-        <Route path="/dept/:id" element={<Depts />} />
+        <Route path="/dept/:id" element={<SubDept />} />
 
         <Route path="/emp" element={<Emp />} />
         <Route path="/emp/:id" element={<Emps />} />

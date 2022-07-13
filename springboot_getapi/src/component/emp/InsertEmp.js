@@ -4,6 +4,7 @@ import { insertData } from "../../api/getEmp";
 
 const onClickHandler = async (setDept, dept) => {
   const deptno = document.getElementsByName("deptno")[0].value;
+
   await getOneDept(setDept, deptno);
 };
 
@@ -17,12 +18,14 @@ export const InsertEmp = ({ setDept, dept }) => {
           ename: document.getElementsByName("ename")[0].value,
           job: document.getElementsByName("job")[0].value,
           mgr: document.getElementsByName("mgr")[0].value,
-          hiredate: document.getElementsByName("hiredate")[0].value,
+          hiredate: null,
+          // hiredate: document.getElementsByName("hiredate")[0].value,
           sal: document.getElementsByName("sal")[0].value,
           comm: document.getElementsByName("comm")[0].value,
           dept: dept,
         })
       : alert("입력값이 잘못되었습니다.");
+    console.log(emp);
     emp && (emp.empno ? insertData(emp) : <></>);
   }, [check]);
   return (

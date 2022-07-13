@@ -13,7 +13,6 @@ export const deleteData = async (empno) => {
 };
 
 export const insertData = async (emp) => {
-  console.log(emp);
   try {
     await axios.post(url, emp).then(() => {
       return true;

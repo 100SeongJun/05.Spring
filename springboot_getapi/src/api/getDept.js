@@ -1,15 +1,24 @@
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 const url = "http://localhost:8080";
-export const getDept = async (setdata) => {
-  await axios.get(url + "/deptAll").then((response) => {
-    setdata(response.data);
-  });
+export const getDept = async (setdata, query) => {
+  const data = query.search.split("=");
+  await axios
+    .get(url + "/deptPage", {
+      params: {
+        page: data[1],
+      },
+    })
+    .then((response) => {
+      setdata(response.data);
+    });
 };
 
 export const getOneDept = async (setDept, deptno) => {
-  await axios
-    .get(url + `/dept/${deptno}`)
-    .then((response) => setDept(response.data));
+  console.log(deptno);
+  await axios.get(url + `/dept/${deptno[2]}`).then((response) => {
+    setDept(response.data == "" ? false : response.data);
+  });
 };
 
 export const deleteDept = async (deptno) => {
@@ -33,9 +42,11 @@ export const insertDept = async (deptno, dname, loc) => {
 };
 
 export const updateDept = async (deptno, dname, loc) => {
-  axios
+  console.log(deptno, dname, loc);
+  console.log(url);
+  await axios
     .put(
-      url + `/${deptno}`,
+      url + `/dept/${deptno[2]}`,
       {
         dname: dname,
         loc: loc,
