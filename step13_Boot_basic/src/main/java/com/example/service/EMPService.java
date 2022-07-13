@@ -16,7 +16,7 @@ public interface EMPService {
 	public EMPDTO insertEmp(EMPDTO emp);
 	public EMPDTO removeEmp(Integer empno);
 	public EMPDTO updateEmp(EMPDTO emp);
-	public List<EMPDTO> findEMPbyLoc(String loc);
 	public PageResultDTO<EMPDTO, EmpEntity> getEmpList(PageRequestDTO pageReqDTO);
+	public List<EMPDTO> findEMPbyLoc(String loc);
 
 }

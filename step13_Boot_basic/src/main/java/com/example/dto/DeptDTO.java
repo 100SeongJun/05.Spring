@@ -1,5 +1,7 @@
 package com.example.dto;
 
+import com.example.entity.DeptEntity;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,14 +16,10 @@ public class DeptDTO {
 	private String dname;
 	private String loc;
 
-//	public DeptDTO(Integer deptno) {
-//		if(deptno != null) {
-//			this.deptno = deptno;
-//		}
-//	}
 
-	public Dept dtoToEntity(DeptDTO deptDTO) {
-		Dept deptEntity = Dept.builder().dname(deptDTO.getDname())
+
+	public DeptEntity DeptDTOToEntity(DeptDTO deptDTO) {
+		DeptEntity deptEntity = DeptEntity.builder().deptno(deptDTO.getDeptno()).dname(deptDTO.getDname())
 				.loc(deptDTO.getLoc()).build();
 
 		return deptEntity;

@@ -29,6 +29,7 @@ public class EmpRestController {
 	}
 	@GetMapping(value = "/emp/{empno}")
 	public EMPDTO findEmp(@PathVariable("empno") Integer empno) {
+		System.out.println(empno);
 		return empService.getEmp(empno);
 	}
 	
@@ -49,15 +50,14 @@ public class EmpRestController {
 		return empService.removeEmp(empno);
 	}
 	
-	@GetMapping(value = "/emp/loc/{loc}")
-	public List<EMPDTO> getEMPbyLoc(@PathVariable("loc") String loc) {
-		
-		return empService.findEMPbyLoc(loc);
-	}
+//	@GetMapping(value = "/emp/loc/{loc}")
+//	public List<EMPDTO> getEMPbyLoc(@PathVariable("loc") String loc) {
+//		
+//		return empService.findEMPbyLoc(loc);
+//	}
 
 	@GetMapping(value = "/emp/page")
 	public List<EMPDTO> getEmp(PageRequestDTO pageRequestDTO){
-		System.out.println("11");
 		return empService.getEmpList(pageRequestDTO).getDtoList();
 	}
 }

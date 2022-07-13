@@ -15,42 +15,41 @@ import com.example.dto.PageRequestDTO;
 import com.example.dto.PageResultDTO;
 import com.example.entity.EmpEntity;
 import com.example.repository.EmpRepository;
-import com.example.repository.EmpRepositorys;
 
 @Service
 public class EMPServiceImpl implements EMPService {
 	@Autowired
 	private EmpRepository empRepository;
-	
-//	@Autowired
-	private EmpRepositorys empRepository2;
 
 	@Override
 	public List<EMPDTO> findAll() {
-		return empRepository.findAll();
+		List<EMPDTO> empDTO = new ArrayList<EMPDTO>();
+		for(EmpEntity empEntity : empRepository.findAll()) {
+			empDTO.add(empEntity.toDTO(empEntity));
+		}
+		return empDTO; 
 	}
 
 	@Override
 	public List<EMPDTO> findEMPbyLoc(String loc) {
-		List<EMPDTO> empList = new ArrayList<EMPDTO>();
+		List<EMPDTO> empDTOList = new ArrayList<EMPDTO>();
 		System.out.println(loc);
-		for (EMPDTO e : empRepository.findAll()) {
-			System.out.println(e);
-			if (e.getDept() != null && e.getDept().getLoc() != null) {
-				if (e.getDept().getLoc().equals(loc)) {
-					empList.add(e);
+		for (EmpEntity empEntity : empRepository.findAll()) {
+			if (empEntity.getDept() != null && empEntity.getDept().getLoc() != null) {
+				if (empEntity.getDept().getLoc().equals(loc)) {
+					empDTOList.add(empEntity.toDTO(empEntity));
 				}
 			}
 		}
-		System.out.println(empList);
-		return empList;
-//		return null;
+		return empDTOList;
 	}
 
 	@Override
 	public EMPDTO getEmp(Integer empno) {
 		if (empRepository.findEmpByEmpno(empno) != null) {
-			return empRepository.findEmpByEmpno(empno);
+			EmpEntity empEntity = empRepository.findEmpByEmpno(empno);
+			EMPDTO empdto = empEntity.toDTO(empEntity);
+			return empdto;
 		}
 		return null;
 	}
@@ -59,7 +58,9 @@ public class EMPServiceImpl implements EMPService {
 	public EMPDTO insertEmp(EMPDTO emp) {
 		System.out.println(emp);
 		if ((getEmp(emp.getEmpno()) == null)) {
-			return empRepository.save(emp);
+			EmpEntity empEntity = empRepository.save(emp.toEntity(emp));
+			EMPDTO empDTO = empEntity.toDTO(empEntity); 
+			return empDTO;
 		}
 		return null;
 	}
@@ -68,8 +69,9 @@ public class EMPServiceImpl implements EMPService {
 	public EMPDTO removeEmp(Integer empno) {
 		EMPDTO emp = getEmp(empno);
 		System.out.println(emp);
-		if (!(emp == null)) {
-			empRepository.delete(emp);
+		
+		if (emp != null) {
+			empRepository.delete(emp.toEntity(emp));
 			return emp;
 		}
 		return null;
@@ -87,7 +89,7 @@ public class EMPServiceImpl implements EMPService {
 			dbEmp.setMgr(emp.getMgr() == null ? dbEmp.getMgr() : emp.getMgr());
 			dbEmp.setSal(emp.getSal() == null ? dbEmp.getSal() : emp.getSal());
 			dbEmp.setDept(emp.getDept() == null ? dbEmp.getDept() : emp.getDept());
-			empRepository.save(dbEmp);
+			empRepository.save(dbEmp.toEntity(dbEmp));
 		}
 		return null;
 	}
@@ -96,7 +98,7 @@ public class EMPServiceImpl implements EMPService {
 	@Override
 	public PageResultDTO<EMPDTO, EmpEntity> getEmpList(PageRequestDTO pageReqDTO){
 		Pageable pageable = pageReqDTO.getPageable(Sort.by("empno").ascending());
-		Page<EmpEntity> result = empRepository2.findAll(pageable);
+		Page<EmpEntity> result = empRepository.findAll(pageable);
 		Function<EmpEntity,EMPDTO> function = (empEntity-> empEntity.toDTO(empEntity));
 		return new PageResultDTO<EMPDTO,EmpEntity>(result,function);
 	}

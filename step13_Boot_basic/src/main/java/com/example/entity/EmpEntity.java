@@ -8,12 +8,12 @@ import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.domain.Persistable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import com.example.dto.Dept;
 import com.example.dto.EMPDTO;
 
 import lombok.AllArgsConstructor;
@@ -29,6 +29,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "EMP")
 public class EmpEntity implements Persistable<Integer>{
 	@Id 
 	@Column(name = "EMPNO")
@@ -51,8 +52,9 @@ public class EmpEntity implements Persistable<Integer>{
 	
 	@Column(name = "COMM")
 	private Double comm;
+	
 	@ManyToOne @JoinColumn(name = "deptno")
-	private Dept dept;
+	private DeptEntity dept;
 	
 	@Override
 	public Integer getId() {
